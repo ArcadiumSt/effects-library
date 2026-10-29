@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>影片特效點子庫</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&family=Bungee&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>影片特效點子庫</h1>
+    <div class="controls">
+      <input id="search" type="search" placeholder="搜尋關鍵字，例如：描邊 條紋 重點">
+      <div id="chips" class="chips">
+        <button data-cat="全部" class="chip active">全部</button>
+        <button data-cat="字幕" class="chip">字幕</button>
+        <button data-cat="轉場" class="chip">轉場</button>
+        <button data-cat="特效" class="chip">特效</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <p id="count" class="count"></p>
+    <div id="grid" class="grid"></div>
+  </main>
+
+  <dialog id="detail">
+    <button id="close" class="close" aria-label="關閉">×</button>
+    <div id="detail-body"></div>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>

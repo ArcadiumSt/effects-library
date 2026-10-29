@@ -1,0 +1,20 @@
+[
+  {
+    "編號": "001",
+    "名稱": "街頭賽車風粗描邊字幕",
+    "參考圖路徑": "public/refs/001.png",
+    "分類": "字幕",
+    "特徵": [
+      "超粗方塊字",
+      "螢光綠填色",
+      "黑色粗描邊加陰影",
+      "字內水平條紋",
+      "逐詞跳出",
+      "英文 Bungee，中文 Noto Sans TC Black"
+    ],
+    "下指令範例": "請把這段字幕做成街頭賽車風：超粗方塊字、螢光綠填色（#00FF55）、黑色粗描邊加陰影、字內水平條紋，文字逐詞跳出。英文用 Bungee，中文用 Noto Sans TC Black。這是重點驚喜時刻，請讓它出現得很有力。",
+    "實作方式": "CSS：font-family 用 Bungee 與 Noto Sans TC Black；color 設螢光綠；-webkit-text-stroke 設黑色粗邊；text-shadow 加陰影；字內條紋可用 background-clip:text 搭配 repeating-linear-gradient 疊水平黑線。逐詞跳出：每個詞包成 span，用 keyframes 從放大、位移到定位，依序加 animation-delay。Premiere／AE：文字圖層加描邊與陰影，條紋用漸層或形狀遮罩。",
+    "適用情境": "重點驚喜時刻、突然的反轉、數字或結論出現的瞬間",
+    "日期": "2026-10-29"
+  }
+]
