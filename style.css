@@ -241,8 +241,7 @@ dialog::backdrop { background: rgba(0, 0, 0, 0.35); backdrop-filter: blur(4px); 
   position: relative;
   background: #F5F5F7;
   border-radius: 14px;
-  padding: 14px 16px 14px 18px;
-  border-left: 4px solid var(--caramel);
+  padding: 14px 16px;
 }
 .cmd { white-space: pre-wrap; font-size: 0.95rem; margin: 0 0 12px; }
 .copy {
