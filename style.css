@@ -30,14 +30,6 @@ body {
   margin: 0 auto;
   padding: 56px 16px 20px;
 }
-.eyebrow {
-  margin: 0 0 6px;
-  color: var(--caramel-text);
-  font-weight: 700;
-  font-size: 0.8rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
 h1 {
   margin: 0;
   font-size: clamp(2.2rem, 6vw, 3.4rem);
@@ -106,7 +98,7 @@ h1 {
   transition: background 200ms var(--ease-out), color 200ms var(--ease-out);
 }
 .chip:active { transform: scale(0.96); }
-.chip.active { background: var(--klein); color: #fff; box-shadow: 0 2px 6px rgba(0, 47, 167, 0.3); }
+.chip.active { background: var(--klein); color: #fff; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12); }
 .chip:focus-visible, .card:focus-visible, .copy:focus-visible, .close:focus-visible {
   outline: 3px solid rgba(0, 47, 167, 0.45);
   outline-offset: 2px;
@@ -134,7 +126,7 @@ main { max-width: 1080px; margin: 0 auto; padding: 24px 16px 64px; }
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 4px 16px rgba(0, 0, 0, 0.06);
   transition: transform 250ms var(--ease-out), box-shadow 250ms var(--ease-out);
 }
-.card:hover { transform: translateY(-4px); box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04), 0 14px 32px rgba(0, 47, 167, 0.14); }
+.card:hover { transform: translateY(-4px); box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04), 0 14px 32px rgba(0, 0, 0, 0.10); }
 /* Feedback on press, instantly */
 .card:active { transform: scale(0.97); transition-duration: 100ms; }
 
