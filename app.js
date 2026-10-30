@@ -27,7 +27,7 @@ function el(tag, props = {}, children = []) {
 function renderGrid() {
   const query = $("#search").value.trim();
   const list = effects.filter((e) => matches(e, query, category));
-  $("#count").textContent = `共 ${list.length} 筆`;
+  $("#count").textContent = `${list.length} 個點子`;
 
   const grid = $("#grid");
   grid.replaceChildren();
@@ -37,10 +37,11 @@ function renderGrid() {
   }
   list.forEach((e) => {
     const card = el("button", { className: "card" }, [
-      el("img", { src: e.參考圖路徑, alt: e.名稱, loading: "lazy" }),
+      thumb(e, true),
       el("div", { className: "meta" }, [
         el("div", { className: "num", textContent: e.編號 }),
         el("div", { className: "name", textContent: e.名稱 }),
+        el("span", { className: "cat", textContent: e.分類 }),
       ]),
     ]);
     card.addEventListener("click", () => openDetail(e));
@@ -48,29 +49,38 @@ function renderGrid() {
   });
 }
 
+// Reference image, swapped for a numbered tile if the file is missing.
+function thumb(e, lazy) {
+  const img = el("img", { className: "thumb", src: e.參考圖路徑, alt: e.名稱 });
+  if (lazy) img.loading = "lazy";
+  img.addEventListener("error", () => {
+    img.replaceWith(el("div", { className: "thumb missing", textContent: e.編號, role: "img", ariaLabel: `${e.名稱}（尚無參考圖）` }));
+  });
+  return img;
+}
+
 function openDetail(e) {
-  const body = $("#detail-body");
-  body.replaceChildren(
-    el("img", { src: e.參考圖路徑, alt: e.名稱 }),
-    el("div", { className: "num", textContent: `${e.編號}　${e.分類}` }),
-    el("h2", { textContent: e.名稱 }),
-    el("h3", { textContent: "特徵" }),
-    el("ul", { className: "tags" }, e.特徵.map((f) => el("li", { textContent: f }))),
-    el("h3", { textContent: "下指令範例" }),
-    el("p", { className: "cmd", textContent: e.下指令範例 }),
-    copyButton(e.下指令範例),
-    el("h3", { textContent: "實作方式" }),
-    el("p", { textContent: e.實作方式 }),
-    el("h3", { textContent: "適用情境" }),
-    el("p", { textContent: e.適用情境 }),
-    el("h3", { textContent: "日期" }),
-    el("p", { textContent: e.日期 }),
+  $("#detail-body").replaceChildren(
+    thumb(e, false),
+    el("div", { className: "detail-text" }, [
+      el("div", { className: "num", textContent: `${e.編號} · ${e.分類}` }),
+      el("h2", { textContent: e.名稱 }),
+      el("h3", { textContent: "特徵" }),
+      el("ul", { className: "tags" }, e.特徵.map((f) => el("li", { textContent: f }))),
+      el("h3", { textContent: "下指令範例" }),
+      el("div", { className: "cmd-box" }, [el("p", { className: "cmd", textContent: e.下指令範例 }), copyButton(e.下指令範例)]),
+      el("h3", { textContent: "實作方式" }),
+      el("p", { textContent: e.實作方式 }),
+      el("h3", { textContent: "適用情境" }),
+      el("p", { textContent: e.適用情境 }),
+      el("p", { className: "date", textContent: `新增於 ${e.日期}` }),
+    ]),
   );
   $("#detail").showModal();
 }
 
 function copyButton(text) {
-  const btn = el("button", { className: "copy", textContent: "複製" });
+  const btn = el("button", { className: "copy", textContent: "複製指令" });
   btn.addEventListener("click", async () => {
     try {
       await navigator.clipboard.writeText(text);
@@ -82,10 +92,10 @@ function copyButton(text) {
       document.execCommand("copy");
       ta.remove();
     }
-    btn.textContent = "已複製";
+    btn.textContent = "✓ 已複製";
     btn.classList.add("done");
     setTimeout(() => {
-      btn.textContent = "複製";
+      btn.textContent = "複製指令";
       btn.classList.remove("done");
     }, 1500);
   });
